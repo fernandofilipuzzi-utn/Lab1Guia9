@@ -9,7 +9,7 @@ namespace Ej3_Infracciones2
     /// <summary>
     /// un acta tiene muchas multas
     /// </summary>
-    class SistemaInfraccion
+    class SistemaInfracciones
     {
         #region tabla multas
         int TIPO_1_MONTO = 25;
@@ -25,81 +25,81 @@ namespace Ej3_Infracciones2
         #endregion
 
         #region del sistema de infracciones
-        double baseMonetaria;
-        public double recaudacion;
+        public double BaseMonetaria { get; private set; }
+        public double Recaudacion { get; private set; }
         #endregion
 
         #region por acta
-        public int dniActa;
-        public string nombreActa;
+        public int DniActa { get; private set; }
+        public string NombreActa { get; private set; }
         int tipoVehiculo;
-        public double subTotalActa;
-        public double ajusteTipoVehiculo;
-        public double subTotalAjustadoActa;
-        public double descuentoPagoActa;
-        public double totalActaAPagar;
+        public double SubTotalActa { get; private set; }
+        public double AjusteTipoVehiculo { get; private set; }
+        public double SubTotalAjustadoActa { get; private set; }
+        public double DescuentoPagoActa { get; private set; }
+        public double TotalActaAPagar { get; private set; }
         #endregion
 
-        #region por infraccion
-        public int codigoInfraccion;
-        public string descripcionInfraccion;
-        public int unidadesInfraccion;
-        public double montoInfraccion;
+        #region por infracción
+        public int CodigoInfraccion { get;  private set; }
+        public string DescripcionInfraccion { get; private set; }
+        public int UnidadesInfraccion { get; private set; }
+        public double MontoInfraccion { get; private set; }
         #endregion
 
         public void IniciarSistemaInfracciones(double baseMonetaria)
         {
-            this.baseMonetaria=baseMonetaria;
+            this.BaseMonetaria=baseMonetaria;
         }
 
         public void IniciarActa(int dni, string nombre, int tipoVehiculo)
         {
-            this.dniActa = dni;
-            this.nombreActa = nombre;
+            this.DniActa = dni;
+            this.NombreActa = nombre;
             this.tipoVehiculo = tipoVehiculo;
-            subTotalActa = 0;
+            SubTotalActa = 0;
         }
 
         public void AgregarInfraccion(int tipoInfraccion)
         {
-            codigoInfraccion = tipoInfraccion;
-            montoInfraccion = 0;
+            CodigoInfraccion = tipoInfraccion;
+            MontoInfraccion = 0;
             switch (tipoInfraccion)
             {
                 case 1:
                     {                        
-                        descripcionInfraccion = TIPO_1_DESCRP;
-                        unidadesInfraccion = TIPO_1_MONTO;                        
+                        DescripcionInfraccion = TIPO_1_DESCRP;
+                        UnidadesInfraccion = TIPO_1_MONTO;                        
                     }
                     break;
                 case 2:
                     {
-                        descripcionInfraccion = TIPO_2_DESCRP;
-                        unidadesInfraccion = TIPO_2_MONTO;
+                        DescripcionInfraccion = TIPO_2_DESCRP;
+                        UnidadesInfraccion = TIPO_2_MONTO;
                     }
                     break;
                 case 3:
                     {
-                        descripcionInfraccion = TIPO_3_DESCRP;
-                        unidadesInfraccion = TIPO_3_MONTO;
+                        DescripcionInfraccion = TIPO_3_DESCRP;
+                        UnidadesInfraccion = TIPO_3_MONTO;
                     }
                     break;
                 case 4:
                     {
-                        descripcionInfraccion = TIPO_4_DESCRP;
-                        unidadesInfraccion = TIPO_4_MONTO;
+                        DescripcionInfraccion = TIPO_4_DESCRP;
+                        UnidadesInfraccion = TIPO_4_MONTO;
                     }
                     break;
                 case 5:
                     {
-                        descripcionInfraccion = TIPO_5_DESCRP;
-                        unidadesInfraccion = TIPO_5_MONTO;
+                        DescripcionInfraccion = TIPO_5_DESCRP;
+                        UnidadesInfraccion = TIPO_5_MONTO;
                     }
                     break;
             }
 
-            montoInfraccion = unidadesInfraccion *baseMonetaria;
-            subTotalActa += montoInfraccion;
+            MontoInfraccion = UnidadesInfraccion *BaseMonetaria;
+            SubTotalActa += MontoInfraccion;
         }
 
         public void FinalizarActa(bool pagaEnElLugar)
@@ -123,19 +123,19 @@ namespace Ej3_Infracciones2
                     }
                     break;
             }
-            ajusteTipoVehiculo= subTotalActa * rec / 100;
-            subTotalAjustadoActa = subTotalActa + ajusteTipoVehiculo;
+            AjusteTipoVehiculo= SubTotalActa * rec / 100;
+            SubTotalAjustadoActa = SubTotalActa + AjusteTipoVehiculo;
 
             double desc = 0;
             if (pagaEnElLugar)
                 desc = 50;
-            descuentoPagoActa = subTotalAjustadoActa *  desc/100;
+            DescuentoPagoActa = SubTotalAjustadoActa *  desc/100;
 
-            totalActaAPagar = subTotalAjustadoActa -descuentoPagoActa;
+            TotalActaAPagar = SubTotalAjustadoActa -DescuentoPagoActa;
 
             if (pagaEnElLugar)
             {
-                recaudacion += totalActaAPagar;
+                Recaudacion += TotalActaAPagar;
             }
         }
     }

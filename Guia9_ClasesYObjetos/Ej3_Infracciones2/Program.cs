@@ -10,7 +10,7 @@ namespace Ej3_Infracciones2
     {
         static void Main(string[] args)
         {
-            SistemaInfraccion sistema = new SistemaInfraccion();
+            SistemaInfracciones sistema = new SistemaInfracciones();
 
             #region pantalla de inicio del sistema
             Console.Clear();
@@ -46,7 +46,7 @@ namespace Ej3_Infracciones2
                             int tipoVehiculo = Convert.ToInt32(Console.ReadLine());
                             sistema.IniciarActa(dni, nombre, tipoVehiculo);
 
-                            Console.WriteLine("{0,10}{1,30}", sistema.dniActa, sistema.nombreActa);
+                            Console.WriteLine("{0,10}{1,30}", sistema.DniActa, sistema.NombreActa);
                             Console.WriteLine("----------------------------------------");
 
                             Console.WriteLine("Ingresar el tipo de infracción");
@@ -55,10 +55,10 @@ namespace Ej3_Infracciones2
                             {
                                 sistema.AgregarInfraccion(codigo);
                                 Console.WriteLine("{0,10}{1,40}({2,10}){3,10:f2}", 
-                                                                                sistema.codigoInfraccion, 
-                                                                                sistema.descripcionInfraccion, 
-                                                                                sistema.unidadesInfraccion,
-                                                                                sistema.montoInfraccion);
+                                                                                sistema.CodigoInfraccion, 
+                                                                                sistema.DescripcionInfraccion, 
+                                                                                sistema.UnidadesInfraccion,
+                                                                                sistema.MontoInfraccion);
 
                                 Console.WriteLine("Ingresar el tipo de infracción");
                                 codigo = Convert.ToInt32(Console.ReadLine());
@@ -69,13 +69,13 @@ namespace Ej3_Infracciones2
                             int tipoPago = Convert.ToInt32(Console.ReadLine());
                             sistema.FinalizarActa(tipoPago == 1);
                             Console.WriteLine("----------------------------------------");
-                            Console.WriteLine("Subtotal: ${0,10:f2}", sistema.subTotalActa);
-                            Console.WriteLine("Ajuste tipo vehiculo:$-{0,10:f2}", sistema.ajusteTipoVehiculo);
+                            Console.WriteLine("Subtotal: ${0,10:f2}", sistema.SubTotalActa);
+                            Console.WriteLine("Ajuste tipo vehiculo:$-{0,10:f2}", sistema.AjusteTipoVehiculo);
                             Console.WriteLine("----------------------------------------");
-                            Console.WriteLine("Total a pagar: ${0,10:f2}",sistema.subTotalAjustadoActa);
-                            Console.WriteLine("Descuento Pago en lugar:$ -{0,10:f2}", sistema.descuentoPagoActa);
+                            Console.WriteLine("Total a pagar: ${0,10:f2}",sistema.SubTotalAjustadoActa);
+                            Console.WriteLine("Descuento Pago en lugar:$ -{0,10:f2}", sistema.DescuentoPagoActa);
                             Console.WriteLine("----------------------------------------");
-                            Console.WriteLine("Total:$ {0,10:f2}", sistema.totalActaAPagar);
+                            Console.WriteLine("Total:$ {0,10:f2}", sistema.TotalActaAPagar);
                             Console.WriteLine("----------------------------------------");
 
                             Console.WriteLine("Presione una tecla para volver al menú");
@@ -90,7 +90,7 @@ namespace Ej3_Infracciones2
                             Console.Clear();
                             
                             Console.WriteLine("Detalle del final del día");
-                            Console.WriteLine("Recaudación: ${0,10:f2}",sistema.recaudacion);
+                            Console.WriteLine("Recaudación: ${0,10:f2}",sistema.Recaudacion);
 
                             Console.WriteLine("Presione una tecla para volver al menú");
                             Console.ReadKey();
